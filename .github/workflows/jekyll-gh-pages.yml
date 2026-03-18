@@ -29,13 +29,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'yarn'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci  # Более надёжный, чем npm install
 
       - name: Build static assets
-        run: yarn build
+        run: npm run build
 
       - name: Verify build output
         run: |
